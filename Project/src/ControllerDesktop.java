@@ -2,7 +2,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -121,7 +120,13 @@ public class ControllerDesktop implements Initializable {
       JSONObject dades = appData.getItemData(type, index);
     
       // Carregar la plantilla
-      URL resource = this.getClass().getResource("assets/template_info_item.fxml");
+      URL resource = this.getClass().getResource("assets/layout_template_info_item.fxml");;
+      switch (type) {
+        case "Consoles": resource = this.getClass().getResource("assets/layout_consoles.fxml"); break;
+        case "Jocs": resource = this.getClass().getResource("assets/layout_jocs.fxml"); break;
+        case "Personatges": resource = this.getClass().getResource("assets/layout_personatges.fxml"); break;
+      }
+      
     
       // Esborrar la informació actual
       info.getChildren().clear();
@@ -134,9 +139,21 @@ public class ControllerDesktop implements Initializable {
         itemController.setImage("assets/images/" + dades.getString("imatge"));
         itemController.setTitle(dades.getString("nom"));
         switch (type) {
-          case "Consoles": itemController.setText(dades.getString("procesador")); break;
-          case "Jocs": itemController.setText(dades.getString("descripcio")); break;
-          case "Personatges": itemController.setText(dades.getString("nom_del_videojoc")); break;
+          case "Consoles": 
+            itemController.setData(dades.getString("data"));
+            itemController.setProcesador(dades.getString("procesador")); 
+            itemController.setColor(dades.getString("color")); 
+            itemController.setVenudes(dades.getInt("venudes"));           
+            break;
+          case "Jocs": 
+            itemController.setAny(dades.getInt("any"));
+            itemController.setTipus(dades.getString("tipus"));
+            itemController.setDescripcio(dades.getString("descripcio")); 
+            break;
+          case "Personatges": 
+            itemController.setColor(dades.getString("color"));
+            itemController.setNomDelVideojoc(dades.getString("nom_del_videojoc")); 
+            break;
         }
       
         // Afegeix la informació a la vista
