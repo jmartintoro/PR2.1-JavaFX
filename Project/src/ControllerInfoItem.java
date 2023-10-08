@@ -1,11 +1,7 @@
-import javax.security.auth.callback.LanguageCallback;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 
 public class ControllerInfoItem {
 
@@ -42,31 +38,26 @@ public class ControllerInfoItem {
 
   public void setImage(String resourceName) {
 
-    // Obté una referència al recurs dins del .jar
     ClassLoader classLoader = getClass().getClassLoader();
     Image image = new Image(classLoader.getResourceAsStream(resourceName));
 
-    // Estableix la imatge a l'ImageView
     img.setImage(image);
   }
   public void setTitle(String text) {
-    // Estableix el contingut del Label
     this.title.setText(text);
   }
 
-  // personatges
+  // Personatges
   public void setColor(String text) {
-    // Estableix el color
     this.color.setText(text);
   }
 
   public void setNomDelVideojoc(String text) {
 
-    // Estableix el contingut del Label
     this.nomDelVideojoc.setText(text);
   }
 
-  // consoles
+  // Consoles
   public void setData(String text) {
     this.data.setText(text);
   }
@@ -79,7 +70,7 @@ public class ControllerInfoItem {
     this.venudes.setText(Integer.toString(num));
   }
 
-  // jocs
+  // Videojocs
   public void setAny(int num) {
     this.any.setText(Integer.toString(num));
   }
